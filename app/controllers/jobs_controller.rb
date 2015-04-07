@@ -1,6 +1,9 @@
 class JobsController < ApplicationController
   def index
+  end
 
+  def show
+    @job = Job.find(params[:id])
   end
 
   def new
@@ -10,8 +13,8 @@ class JobsController < ApplicationController
   end
 
   def create
-    binding.pry
     job = Job.new(job_params)
+    job.contractor = current_user
     if job.save
       redirect_to "/jobs"
     end
