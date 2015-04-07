@@ -1,0 +1,6 @@
+<header>
+  <% if logged_in? %>
+    <%= current_user.name %>
+    <%= link_to "Log Out", "/logout" %>
+  <% end %>
+</header>
