@@ -1,4 +1,7 @@
 <h1>Job Listings</h1>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :h3, msg, class: name %>
+  <% end %>
 <% Job.all.each do |j| %>
   <h3><strong><%= link_to j.title, j %></strong></h3>
   <h4><%= link_to j.contractor.name, j.contractor %></h4>
@@ -6,6 +9,9 @@
   <p>Skills:</p>
   <% j.skills.each do |s| %>
     <%= s.name %>
+  <% end %>
+  <%= form_for([j, j.requests.build]) do |f| %>
+  <%= f.submit "Make offer" %>
   <% end %>
   <br>
 <% end %>

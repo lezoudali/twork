@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root to: "welcome#index"
   resources :sessions
   resources :users
-  resources :jobs
+  resources :jobs do 
+    resources :requests
+  end
 
   get '/auth/twitter/callback', to: "sessions#create"
   get '/logout', to: 'sessions#destroy'
