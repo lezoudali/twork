@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  mount_uploader :image, ImageUploader
+
   has_many :jobs, foreign_key: :contractor_id
   has_many :user_skills
   has_many :skills, through: :user_skills

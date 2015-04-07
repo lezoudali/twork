@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'jobs/new'
 
   root to: "welcome#index"
   resources :sessions
