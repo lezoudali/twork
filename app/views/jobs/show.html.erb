@@ -1,0 +1,11 @@
+<h4><%= link_to "Job Listings" ,"/jobs" %></h4>
+<h1><strong><%= link_to @job.title, @job %></strong></h1>
+<h3><%= link_to @job.contractor.name, @job.contractor %></h3>
+<p>Description: <%= @job.description %></p>
+<p>Skills:</p>
+<% @job.skills.each do |s| %>
+  <%= s.name %>
+<% end %>
+<%= form_for([@job, @job.requests.build]) do |f| %>
+<%= f.submit "Make offer", class: "btn btn-primary" %>
+<% end %>

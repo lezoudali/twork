@@ -9,3 +9,5 @@
   u.jobs.build(title: "Paint my #{Faker::Hacker.noun}", description: Faker::Lorem.sentence)
   u.save
 end
+
+10.times {Skill.create(name: Faker::Hacker.ingverb)}
