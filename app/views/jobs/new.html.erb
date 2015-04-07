@@ -1,12 +1,17 @@
+<h1>Create Job</h1>
+
 <%= form_for @job do |f| %>
   <%= f.label :title %><br>
   <%= f.text_field :title %><br>
   <%= f.label :description %><br>
   <%= f.text_area :description %><br>
-
-  <%= f.collection_check_boxes :skill_ids, @current_user.skills, :id, :name %>
-
+  
+  <%= f.label :skills %><br>
   <%= f.fields_for :skills do |skills_form| %>
-    <%= skills_form.check_box :name %>
+    <%= skills_form.select :id, options_from_collection_for_select(Skill.all, :id, :name), {}, { :multiple => true } %><br>
+    <%=  %>
   <% end %>
+
+  <%= f.submit "Create Job" %>
+
 <% end %>
