@@ -7,10 +7,7 @@
   <%= f.text_area :description %><br>
   
   <%= f.label :skills %><br>
-  <%= f.fields_for :skills do |skills_form| %>
-    <%= skills_form.select :id, options_from_collection_for_select(Skill.all, :id, :name), {}, { :multiple => true } %><br>
-    <%=  %>
-  <% end %>
+  <%= f.select :skill_ids, Skill.all.collect {|s| [s.name.downcase, s.id]}.sort, {}, { :multiple => true } %>
 
   <%= f.submit "Create Job" %>
 

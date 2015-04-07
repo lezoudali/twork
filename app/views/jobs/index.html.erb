@@ -1,0 +1,8 @@
+<% Job.all.each do |j| %>
+  Title: <%= j.title %><br>
+  Description: <%= j.description %><br>
+  Skills:
+  <% j.skills.each do |s| %>
+    <%= s.name %><br>
+  <% end %>
+<% end %>
