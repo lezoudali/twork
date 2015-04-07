@@ -1,0 +1,12 @@
+<%= form_for @job do |f| %>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %><br>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %><br>
+
+  <%= f.collection_check_boxes :skill_ids, @current_user.skills, :id, :name %>
+
+  <%= f.fields_for :skills do |skills_form| %>
+    <%= skills_form.check_box :name %>
+  <% end %>
+<% end %>
