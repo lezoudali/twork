@@ -16,6 +16,8 @@
           <li><p class="navbar-text">Signed in as 
             <%= link_to current_user.name, current_user %></a>
           </p></li>
+
+
           <li class="dropdown">
             <a href data-toggle="dropdown">
               <span class="label label-info">
@@ -23,13 +25,22 @@
               </span>
             </a>
             <% if current_user.offers.count > 0 %>
-              <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu">
-                <% current_user.offers.each do |offer| %>
-                  <li><a tabindex="-1" href="#"><%= offer.client.name %></a></li>
+              <ul class="col col-sm-3 dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenu">
+                <% current_user.offers.group_by {|x| x.job_id}.each do |job_id, offers| %>
+                  <li role="presentation" class="dropdown-header"><%= offers.first.job.title %></li>
+                  <% offers.each do |offer| %>
+                    <li>
+                      <a href="/users/<%= offer.client.id %>">
+                        <strong><%= offer.client.name %></strong>
+                      </a>
+                    </li>
+                  <% end %>
                 <% end %>
               </ul>
             <% end %>
           </li>
+
+
           <li><p class="navbar-text navbar-right btn btn-default login">
             <%= link_to "Log Out", logout_path %></a>
           </p></li>
