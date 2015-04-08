@@ -12,12 +12,25 @@
   margin-top: 40px;
 }
 
+.profile-info p, .profile-bio p {
+  font-size: 16px;
+  color: #666;
+}
+
 .profile-name {
   font-weight: 700;
   font-style: normal;
-  font-size: 30px;
+  font-size: 45px;
+  border-bottom: 1px solid black;
 }
 
+.profile-picture {
+  padding-left: 40px;   
+}
+
+.profile-bio {
+  padding-top: 20px;
+}
 img {
   display: block;
 }
