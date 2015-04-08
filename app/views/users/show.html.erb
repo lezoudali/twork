@@ -1,14 +1,18 @@
-<div class="row">
-  <div class="col-md-4">
-    <% if @user.image.url.nil? %>
-      <%= image_tag('default.png', class: "img-circle") %>
-    <% else %>
-      <%= image_tag(@user.image_url(:thumb), class: "img-circle") %>
-    <% end %>
+<div class="container profile">
+  <div class="row">
+    <div class="col-sm-9">
+      <span class="profile-name">
+        <%= @user.name %>
+      </span></div>
+    <div class="col-sm-3">
+      <% if @user.image.url.nil? %>
+        <%= image_tag('default.png', class: "img-circle") %>
+      <% else %>
+        <%= image_tag(@user.image_url(:thumb), class: "img-circle") %>
+      <% end %>
+      
+    </div>
   </div>
-  <div class="col-md-8">
-    <%= @user.name %><br>
-    <%= @user.email %><br>
-    <%= @user.bio %><br>
-  </div>
+
 </div>
+
