@@ -1,75 +1,67 @@
-<div class="container show">
+<div class="row">
 
-  <div class="row">
-
-    <div class="col-sm-9">
-      <div class = "profile">
-        <div class="profile-name">
-          <%= @user.name %>
-        </div>
-
-        <div class="profile-info row">
-          <div class="profile-email col-sm-4">
-            <h4>Email: </h4>
-            <p><%= @user.email %></p> 
-          </div>
-          <div class="profile-since col-sm-4">
-            <h4>Member since:</h4>
-            <p><%= @user.created_at.to_formatted_s(:long_ordinal) %></p>
-          </div>
-          <div class="profile-twitter col-sm-4">
-            <h4>Twitter:</h4>
-            <p>
-              <% if @user.twitter_handle %>
-                <%= link_to "@#{@user.twitter_handle}", "https://twitter.com/#{@user.twitter_handle}" %>
-              <% else %>
-                <%= "Edit Your Profile" %>
-              <% end %>
-            </p>
-          </div>
-        </div>
-
-        <div class="profile-bio">
-          <h4>Bio:</h4>
-          <p><%= @user.bio %></p><br>
-        </div>
+  <div class="col-sm-9">
+    <div class = "row profile">
+      <div class="profile-name main-color">
+        <%= @user.name %>
       </div>
-      <% if @user.jobs.present? %>
-      <div class="jobs">
-        <h1>Your posted jobs</h1>
-        <% @user.jobs.each do |job| %>
-          <%= div_for(job, class: 'user_job') do %>
-            <h3><strong><%= link_to job.title, job %></strong></h3>
-            <h4>Description</h4> <p><%= job.description %></p>
-            <h4>Skills</h4>
-            <% job.skills.each do |s| %>
-              <%= s.name %>
+
+      <div class="profile-info row">
+        <div class="profile-email col-sm-4">
+          <h4 class="main-color">Email: </h4>
+          <p><%= @user.email %></p> 
+        </div>
+        <div class="profile-since col-sm-4">
+          <h4 class="main-color">Member since:</h4>
+          <p><%= @user.created_at.to_formatted_s(:long_ordinal) %></p>
+        </div>
+        <div class="profile-twitter col-sm-4">
+          <h4 class="main-color">Twitter:</h4>
+          <p>
+            <% if @user.twitter_handle %>
+              <%= link_to "@#{@user.twitter_handle}", "https://twitter.com/#{@user.twitter_handle}" %>
+            <% else %>
+              <%= "Edit Your Profile" %>
             <% end %>
-          <% end %>
-        <% end %>
+          </p>
+        </div>
       </div>
+
+      <div class="profile-bio">
+        <h4 class="main-color">Bio:</h4>
+        <p><%= @user.bio %></p><br>
+      </div>
+    </div>
+    <% if @user.jobs.present? %>
+    <div class="jobs">
+      <h1 class="row main-color">Jobs</h1>
+      <% @user.jobs.each do |job| %>
+        <%= div_for(job, class: "row #{cycle("odd", "even")}") do %>
+          <h3><strong><%= link_to job.title, job %></strong></h3>
+          <h4 class="main-color">Description: </h4> <p><%= job.description %></p><br>
+        <% end %>
       <% end %>
     </div>
+    <% end %>
+  </div>
 
-
-
-    <div class="col-sm-3">
-      <div class="profile-right">
-        <% if @user.image.url.nil? %>
-          <%= image_tag('default.png', class: "img-thumbnail") %>
-        <% else %>
-          <%= image_tag(@user.image_url(:thumb), class: "img-thumbnail") %>
-        <% end %>
-        <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
-      </div>
-
-      <div class="profile-right">
-        <h3>Skills </h3>
-        <% @user.skills.each do |skill| %>
-          <span><%= link_to skill.name, skill_path(skill) %> </span>
-        <% end %>
-      </div> 
+  <div class="col-sm-3">
+    <div class="profile-right">
+      <% if @user.image.url.nil? %>
+        <%= image_tag('default.png', class: "img-thumbnail") %>
+      <% else %>
+        <%= image_tag(@user.image_url(:thumb), class: "img-thumbnail") %>
+      <% end %>
+      <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
     </div>
+
+    <div class="profile-right">
+      <h3 class="main-color">Skills </h3>
+      <% @user.skills.each do |skill| %>
+        <%= link_to skill.name, skill_path(skill), class: "label label-success" %>
+      <% end %>
+    </div> 
   </div>
 </div>
+
 

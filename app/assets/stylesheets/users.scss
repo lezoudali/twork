@@ -4,22 +4,29 @@
 
 .show {
   width: 916px;
-  border: 1px solid grey;
+  /*border: 1px solid grey;*/
   padding-top: 50px;
 }
 
-.profile, .user_job {
+.profile {
   border-bottom: 1px dashed #666
 }
 
+.job.row h4, .job.row p {
+  display: inline;
+}
+
 .jobs h1 {
-  color: #777;
   padding-bottom: 20px;
   border-bottom: 1px dashed #666
 }
 
 .profile-info {
   margin-top: 40px;
+}
+
+.odd {
+  background-color: #F8F8F8;
 }
 
 .profile-info p, .profile-bio p {
@@ -32,6 +39,10 @@
   font-style: normal;
   font-size: 45px;
   border-bottom: 1px solid #666;
+}
+
+.main-color {
+  color: #010652;
 }
 
 .profile-right {
