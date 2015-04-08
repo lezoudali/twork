@@ -2,10 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.profile {
+.show {
   width: 916px;
   border: 1px solid grey;
   padding-top: 50px;
+}
+
+.profile, .user_job {
+  border-bottom: 1px dashed #666
+}
+
+.jobs h1 {
+  color: #777;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #666
 }
 
 .profile-info {
@@ -21,11 +31,16 @@
   font-weight: 700;
   font-style: normal;
   font-size: 45px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #666;
 }
 
-.profile-picture {
+.profile-right {
   padding-left: 40px;   
+}
+
+.profile-right .btn {
+  margin-top: 20px;
+  margin-left: 40px;   
 }
 
 .profile-bio {
