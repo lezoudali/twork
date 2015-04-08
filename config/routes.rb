@@ -4,11 +4,7 @@ Rails.application.routes.draw do
 
   root to: "welcome#index"
   resources :sessions
-  resources :users do 
-    member do 
-      get :profile
-    end
-  end
+  resources :users
   resources :jobs do 
     resources :requests
   end

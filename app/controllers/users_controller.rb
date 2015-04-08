@@ -6,9 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-  end
-
-  def profile
+    render 'profile' if current_user.id == params[:id].to_i
   end
 
   def edit
