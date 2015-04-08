@@ -8,8 +8,22 @@ class User < ActiveRecord::Base
   has_many :requests, foreign_key: :client_id
   has_many :offers, through: :jobs, source: :requests
 
-  def self.create_with_omniauth(hash)
-    user_name = hash['info']['name']
-    User.create(:name => user_name, provider: hash[:provider], uid: hash[:uid])
+  def self.create_with_omniauth(auth)
+
+    user = User.create(
+      name: auth[:info][:name], 
+      provider: auth[:provider], 
+      uid: auth[:uid],
+      twitter_handle: auth[:info][:nickname],
+      bio: auth[:info][:description]
+    )
+
+    image_location = File.join(Rails.root, "/app/assets/images/profile/#{user.id}.jpg")
+    open(image_location, "wb") do |file|
+      file << open(auth[:info][:image].gsub("_normal", "")).read
+    end
+    user.image = File.open(image_location)
+    user.save
+    user
   end
 end
