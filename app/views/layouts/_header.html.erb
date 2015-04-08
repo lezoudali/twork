@@ -25,13 +25,21 @@
               </span>
             </a>
             <% if current_user.offers.count > 0 %>
-              <ul class="col col-sm-3 dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenu">
+              <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenu">
                 <% current_user.offers.group_by {|x| x.job_id}.each do |job_id, offers| %>
                   <li role="presentation" class="dropdown-header"><%= offers.first.job.title %></li>
                   <% offers.each do |offer| %>
                     <li>
                       <a href="/users/<%= offer.client.id %>">
                         <strong><%= offer.client.name %></strong>
+                        <%= form_tag "/requests/#{offer.id}", action: "patch" do %>
+                          <%= hidden_field_tag :accepted, true %>
+                          <%= submit_tag :Accept, class: "btn btn-xs btn-primary" %>
+                        <% end %>
+                        <%= form_tag "/requests/#{offer.id}", action: "delete" do %>
+                          <%= hidden_field_tag :accepted, false %>
+                          <%= submit_tag :Decline, class: "btn btn-xs btn-danger" %>
+                        <% end %>
                       </a>
                     </li>
                   <% end %>
