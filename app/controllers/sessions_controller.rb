@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
   end
 
   protected
-
   def auth
     request.env["omniauth.auth"]
   end
