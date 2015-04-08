@@ -1,2 +1,7 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="row">
+  <div class= "col-sm-6 col-sm-offset-3">
+    <%= form_for @user do |f| %>
+      <%= render 'form', f: f %>
+    <% end %>
+  </div>
+</div>

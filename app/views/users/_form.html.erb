@@ -1,0 +1,31 @@
+<div class="form-group">
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control', placeholder: "Name" %>
+</div>    
+
+<div class="form-group">
+  <%= f.label :email %>
+  <%= f.email_field :email, class: 'form-control', placeholder: "Email" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :bio %>
+  <%= f.text_area :bio, class: 'form-control', placeholder: "Bio" %>
+</div>
+
+<div class="form-group">
+  <%= label_tag :skill %>
+  <%= text_field_tag :skill, "", class: 'form-control', placeholder: "Separate skills by comma" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :image, "Profile Picture" %>
+  <%= f.file_field :image, placeholder: "Image" %>
+</div>
+
+
+<%= f.submit "Update", class: 'form-control btn btn-primary' %>
+
+
+
+

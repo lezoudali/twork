@@ -3,4 +3,6 @@ class Job < ActiveRecord::Base
   has_many :requests
   has_many :job_skills
   has_many :skills, through: :job_skills
+
+  accepts_nested_attributes_for :skills
 end
