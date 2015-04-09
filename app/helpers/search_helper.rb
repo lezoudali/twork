@@ -4,7 +4,7 @@ module SearchHelper
     if search_present?
       render 'search/results'
     else
-      render text: 'No Results Have Been Found'
+      flash[:info] = 'No Results Have Been Found'
     end
   end
 
