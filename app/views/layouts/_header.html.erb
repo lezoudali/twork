@@ -21,22 +21,22 @@
           <li class="dropdown">
             <a href data-toggle="dropdown">
               <span class="label label-info">
-                <%= current_user.offers.count %>
+                <%= current_user.unread_offers.count %>
               </span>
             </a>
-            <% if current_user.offers.count > 0 %>
+            <% if current_user.unread_offers.count > 0 %>
               <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenu">
-                <% current_user.offers.group_by {|x| x.job_id}.each do |job_id, offers| %>
+                <% current_user.unread_offers.group_by {|x| x.job_id}.each do |job_id, offers| %>
                   <li role="presentation" class="dropdown-header"><%= offers.first.job.title %></li>
                   <% offers.each do |offer| %>
                     <li>
                       <a href="/users/<%= offer.client.id %>">
                         <strong><%= offer.client.name %></strong>
-                        <%= form_tag "/requests/#{offer.id}", action: "patch" do %>
+                        <%= form_tag "/requests/#{offer.id}", method: "patch" do %>
                           <%= hidden_field_tag :accepted, true %>
                           <%= submit_tag :Accept, class: "btn btn-xs btn-primary" %>
                         <% end %>
-                        <%= form_tag "/requests/#{offer.id}", action: "delete" do %>
+                        <%= form_tag "/requests/#{offer.id}", method: "patch" do %>
                           <%= hidden_field_tag :accepted, false %>
                           <%= submit_tag :Decline, class: "btn btn-xs btn-danger" %>
                         <% end %>

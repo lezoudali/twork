@@ -26,4 +26,16 @@ class User < ActiveRecord::Base
     user.save
     user
   end
+
+  def unread_offers
+    offers.where(accepted: nil)
+  end
+
+  def accepted_offers
+    offers.where(accepted: true)
+  end
+
+  def declined_offers
+    offers.where(accepted: false)
+  end
 end

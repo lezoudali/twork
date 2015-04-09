@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   post '/search' => 'search#search'
+
+  patch '/requests/:id' => 'requests#update'
   
 end
