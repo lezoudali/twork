@@ -1,14 +1,47 @@
-<% @results.each do |result| %>
-<% if !result[1].empty? %>
-  <h1><u><%= result[0].to_s.capitalize %></u></h1>
-  <% result[1].each do |query| %>
-      <% if result[0].to_s == "jobs" %>
-      <h3><strong><%= link_to query.title, job_path(query)%></strong></h3>
-      <% elsif result[0].to_s == "skills" %>
-      <h3><strong><%= link_to query.name, skill_path(query) %></strong></h3>
-      <% elsif result[0].to_s == "users" %>
-      <h3><strong><%= link_to query.name, user_path(query) %></strong></h3> 
-     <% end %>
-   <% end %>
-  <% end %>
-<% end %>
+<h1 class="container row main-color">Search Results</h1><br><br>
+  <ul class="nav nav-pills nav-justified">
+    <li class="active"><a href="#users" data-toggle="tab">Users</a></li>
+    <li><a href="#jobs" data-toggle="tab">Jobs</a></li>
+    <li><a href="#skills" data-toggle="tab">Skills</a></li>
+  </ul><br><br>
+
+<div class="container tab-content">
+    <div class="tab-pane fade in active" id="users">
+      <% if @searches[:users].present? %>
+        <% @searches[:users].each do |user| %>
+          <%= div_for(user, class: "row #{cycle("odd", "even")}") do %>
+            <h3><strong><%= link_to user.name, user_path(user) %></strong></h3>
+          <% end %>
+        <% end %>  
+      <% else %>
+          <h3 class="main-color"> No Matching Users </h3>
+      <% end %>
+    </div>
+
+    <div class="tab-pane fade" id="jobs">
+      <% if @searches[:jobs].present? %>
+        <% @searches[:jobs].each do |job| %>
+          <%= div_for(job, class: "row #{cycle("odd", "even")}") do %>
+            <h3><strong><%= link_to job.title, job_path(job) %></strong></h3>
+          <% end %>
+        <% end %> 
+      <% else %>
+          <h3 class="main-color"> No Matching Jobs </h3>
+      <% end %>
+    </div>
+
+    <div class="tab-pane fade" id="skills">
+      <% if @searches[:skills].present? %>
+        <% @searches[:skills].each do |skill| %>
+          <%= div_for(skill, class: "row #{cycle("odd", "even")}") do %>
+            <h3><strong><%= link_to skill.name, skill_path(skill) %></strong></h3>
+          <% end %>
+        <% end %> 
+      <% else %>
+          <h3 class="main-color"> No Matching Skills </h3>
+      <% end %>
+    </div>
+</div>
+
+
+

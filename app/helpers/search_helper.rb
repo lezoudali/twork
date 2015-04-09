@@ -7,6 +7,4 @@ module SearchHelper
       flash[:info] = 'No Results Have Been Found'
     end
   end
-
-
 end
