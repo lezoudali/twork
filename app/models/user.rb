@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   has_many :offers, through: :jobs, source: :requests
 
   def self.create_with_omniauth(auth)
-
     user = User.create(
       name: auth[:info][:name], 
       provider: auth[:provider], 
