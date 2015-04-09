@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409134157) do
+ActiveRecord::Schema.define(version: 20150409222339) do
 
   create_table "job_skills", force: :cascade do |t|
     t.integer  "job_id"
@@ -27,8 +27,9 @@ ActiveRecord::Schema.define(version: 20150409134157) do
     t.string   "title"
     t.text     "description"
     t.integer  "contractor_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "completed",     default: false
   end
 
   add_index "jobs", ["contractor_id"], name: "index_jobs_on_contractor_id"

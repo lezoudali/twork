@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_action :set_user, only: [:show, :edit, :update, :profile]
+  before_action :set_user, only: [:show, :edit, :update, :profile, :jobs]
 
   def index
     @users = User.all
+  end
+
+  def jobs
+    @jobs = @user.jobs
   end
 
   def show

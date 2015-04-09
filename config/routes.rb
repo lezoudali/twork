@@ -4,7 +4,15 @@ Rails.application.routes.draw do
 
   root to: "welcome#index"
   resources :sessions
-  resources :users
+  resources :users do
+    member do  
+      get :jobs
+    end
+  end
+
+
+
+
   resources :jobs do 
     resources :requests
   end

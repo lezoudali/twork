@@ -27,14 +27,25 @@ class User < ActiveRecord::Base
   end
 
   def unread_offers
-    offers.where(accepted: nil)
+    offers.where(accepted: nil).select{|offer| !offer.job.completed }
   end
 
   def accepted_offers
-    offers.where(accepted: true)
+    offers.where(accepted: true).select{|offer| !offer.job.completed}
   end
 
   def declined_offers
     offers.where(accepted: false)
   end
+
+  def completed_offers
+    offers.select do |offer|
+      offer.job.completed 
+    end.uniq {|offer| offer.job.title}
+  end
+
+  def uncompleted_jobs
+    jobs.where(completed: false)
+  end
+
 end
