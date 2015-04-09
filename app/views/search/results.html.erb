@@ -1,13 +1,13 @@
 <% @results.each do |result| %>
-<h1><%= result[0].to_s.capitalize %></h1>
 <% if !result[1].empty? %>
+  <h1><u><%= result[0].to_s.capitalize %></u></h1>
   <% result[1].each do |query| %>
       <% if result[0].to_s == "jobs" %>
       <h3><strong><%= link_to query.title, job_path(query)%></strong></h3>
       <% elsif result[0].to_s == "skills" %>
       <h3><strong><%= link_to query.name, skill_path(query) %></strong></h3>
       <% elsif result[0].to_s == "users" %>
-      <h3><strong><%= link_to query.name, user_path(query) %></strong></h3>  
+      <h3><strong><%= link_to query.name, user_path(query) %></strong></h3> 
      <% end %>
    <% end %>
   <% end %>

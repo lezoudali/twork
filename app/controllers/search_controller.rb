@@ -8,7 +8,6 @@ class SearchController < ApplicationController
     @search = Search.for(params[:keyword])
     if search_present?
       @results = prioritize(@search)
-      # binding.pry
       render_results 
     else
       flash[:notice] = "No Results Were Found"
