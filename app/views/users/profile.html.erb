@@ -2,26 +2,14 @@
   <%= render 'show' %>
   <div class="row">
     <div class="col-md-9">
-      <% if @user.requests.present? %>
-        <div class="jobs">
-          <h1 class="row main-color">Your requests</h1>
-          <% @user.requests.each do |request| %>
-            <%= div_for(request.job, class: "row #{cycle("odd", "even")}") do %>
-              <h3 ><strong><%= link_to request.job.title, request.job %></strong></h3>
-              <h4 class="main-color">Description: </h4> <p><%= request.job.description %></p><br>
-              <h4 class="main-color">Posted by: </h4><p><%= link_to request.job.contractor.name, request.job.contractor %></p><br><br>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-
-      <h1 class="row main-color">Your offers</h1>
       <div class="jobs">
-        <ul class="nav nav-pills nav-justified">
+      <h1 class="row main-color">Your offers</h1><br>
+        <ul class="row nav nav-pills nav-justified">
           <li class="active"><a href="#pending_offers" data-toggle="tab">Pending</a></li>
           <li><a href="#accepted_offers" data-toggle="tab">Accepted</a></li>
           <li><a href="#declined_offers" data-toggle="tab">Declined</a></li>
-        </ul>
+          <li><a href="#completed_offers" data-toggle="tab">Completed</a></li>
+        </ul><br>
 
         <div class="tab-content">
 
@@ -31,7 +19,7 @@
                 <%= div_for(offer.job, class: "row #{cycle("odd", "even")}") do %>
                   <h3><strong><%= link_to offer.job.title, offer.job %></strong></h3>
                   <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
-                  <h4 class="main-color">Client: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
+                  <h4 class="main-color">client: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
                   <div class="accept_decline">
                   <%= form_tag "/requests/#{offer.id}", method: "patch" do %>
                     <%= hidden_field_tag :accepted, true %>
@@ -54,10 +42,17 @@
           <div class="tab-pane fade" id="accepted_offers">
             <% if @user.accepted_offers.present? %>
               <% @user.accepted_offers.each do |offer| %>
+
                 <%= div_for(offer.job, class: "row #{cycle("odd", "even")}") do %>
                   <h3><strong><%= link_to offer.job.title, offer.job %></strong></h3>
                   <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
-                  <h4 class="main-color">Client: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
+                  <h4 class="main-color">client: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
+
+                  <%= form_for offer.job do |f| %>
+                    <%= f.hidden_field :completed, value: true %>
+                    <%= f.submit "Completed", class: "btn btn-xs btn-success" %>
+                  <% end %><br>
+
                 <% end %>
               <% end %>
             <% else %>
@@ -65,19 +60,47 @@
             <% end %>
           </div>
 
+
           <div class="tab-pane fade" id="declined_offers">
             <% if @user.declined_offers.present? %>
               <% @user.declined_offers.each do |offer| %>
                 <%= div_for(offer.job, class: "row #{cycle("odd", "even")}") do %>
                   <h3><strong><%= link_to offer.job.title, offer.job %></strong></h3>
                   <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
-                  <h4 class="main-color">Client: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
+                  <h4 class="main-color">client: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
                 <% end %>
               <% end %>
             <% else %>
                 <h3 class="main-color"> No Offers Declined</h3>
             <% end %>
           </div>
+
+          <div class="tab-pane fade" id="completed_offers">
+            <% if @user.completed_offers.present? %>
+              <% @user.completed_offers.each do |offer| %>
+                <%= div_for(offer.job, class: "row #{cycle("odd", "even")}") do %>
+                  <h3><strong><%= link_to offer.job.title, offer.job %></strong></h3>
+                  <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
+                  <h4 class="main-color">client: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
+                <% end %>
+              <% end %>
+            <% else %>
+                <h3 class="main-color"> No Completed Jobs</h3>
+            <% end %>
+          </div>
+
+
+
+          <% if @user.requests.present? %>
+              <h1 class="row main-color">Your requests</h1><br>
+              <% @user.requests.each do |request| %>
+                <%= div_for(request.job, class: "row #{cycle("odd", "even")}") do %>
+                  <h3 ><strong><%= link_to request.job.title, request.job %></strong></h3>
+                  <h4 class="main-color">Description: </h4> <p><%= request.job.description %></p><br>
+                  <h4 class="main-color">Posted by: </h4><p><%= link_to request.job.contractor.name, request.job.contractor %></p><br><br>
+                <% end %>
+              <% end %>
+          <% end %>
 
         </div>
       </div>

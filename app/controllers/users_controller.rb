@@ -7,11 +7,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    render 'profile' if confirmed_logged_in?
+    render 'profile' if confirm_logged_in?
   end
 
   def edit
-    redirect_to root_path unless confirmed_logged_in?
+    redirect_to root_path unless confirm_logged_in?
   end
 
   def update

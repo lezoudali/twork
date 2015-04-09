@@ -32,14 +32,16 @@
         <p><%= @user.bio %></p><br>
       </div>
     </div>
-    <% if @user.jobs.present? %>
     <div class="jobs">
+    <% if @user.uncompleted_jobs.present? %>
       <h1 class="row main-color">Jobs</h1>
-      <% @user.jobs.each do |job| %>
+      <% @user.uncompleted_jobs.each do |job| %>
         <%= div_for(job, class: "  row #{cycle("odd", "even")}") do %>
           <h3><strong><%= link_to job.title, job %></strong></h3>
           <h4 class="main-color">Description: </h4> <p><%= job.description %></p><br><br>
-          <% unless confirmed_logged_in? %>
+          <% if confirm_logged_in? %>
+            <%= link_to "Edit", edit_job_path(job), class: "btn btn-md btn-primary" %><br>
+          <% else %>
             <%= form_for([job, job.requests.build]) do |f| %>
             <%= f.submit "Make offer", class: "btn btn-primary" %>
             <% end %>
@@ -48,8 +50,6 @@
         <% end %>
       <% end %>
     </div>
-
-    
     <% end %>
   </div>
 
@@ -60,7 +60,7 @@
       <% else %>
         <%= image_tag(@user.image_url(:thumb), class: "img-thumbnail") %>
       <% end %>
-      <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" if confirmed_logged_in? %>
+      <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" if confirm_logged_in? %>
     </div>
 
     <div class="profile-right">

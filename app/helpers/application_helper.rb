@@ -7,4 +7,12 @@ module ApplicationHelper
       when :warning then "alert alert-warning alert-dismissable"
     end
   end
+
+  def logged_in?
+    !!current_user
+  end
+
+  def confirm_logged_in?
+    current_user.id == params[:id].to_i
+  end
 end
