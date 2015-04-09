@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include UsersHelper
   before_action :set_user, only: [:show, :edit, :update, :profile]
 
   def index
@@ -6,10 +7,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    render 'profile' if current_user.id == params[:id].to_i
+    render 'profile' if confirmed_logged_in?
   end
 
   def edit
+    redirect_to root_path unless confirmed_logged_in?
   end
 
   def update

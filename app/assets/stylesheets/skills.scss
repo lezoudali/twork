@@ -1,3 +1,19 @@
 // Place all the styles related to the Skills controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.skills {
+  padding-bottom: 20px;
+}
+
+.skill {
+  margin-top: 10px;
+}
+
+.skills_jobs {
+  display: none;
+}
+
+p.btn.btn-info a {
+  color: white;
+} 

@@ -17,6 +17,11 @@
       <%= f.select :skill_ids, Skill.all.collect {|s| [s.name.downcase, s.id]}.sort, {}, { multiple: true, class: "form-control" } %>
     </div>
 
+    <div class="form-group">
+      <%= label_tag :new_skills, "New Skills" %>
+      <%= text_field_tag :new_skills,"",  class: "form-control", placeholder: "Separate by commas" %>
+    </div>
+
     <%= f.submit "Create Job", class: "btn btn-primary form-control" %>
 
   <% end %>

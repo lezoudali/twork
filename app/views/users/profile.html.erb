@@ -9,7 +9,7 @@
             <%= div_for(request.job, class: "row #{cycle("odd", "even")}") do %>
               <h3 ><strong><%= link_to request.job.title, request.job %></strong></h3>
               <h4 class="main-color">Description: </h4> <p><%= request.job.description %></p><br>
-              <h4 class="main-color">Posted by: </h4><p><%= link_to request.job.contractor.name, request.job.contractor %></p>
+              <h4 class="main-color">Posted by: </h4><p><%= link_to request.job.contractor.name, request.job.contractor %></p><br><br>
             <% end %>
           <% end %>
         </div>
@@ -19,10 +19,10 @@
         <div class="jobs">
           <h1 class="row main-color">Your offers</h1>
           <% @user.offers.each do |offer| %>
-            <%= div_for(offer.job, class: "row #{cycle("odd", "even")}") do %>
+            <%= div_for(offer.job, class: "  row #{cycle("odd", "even")}") do %>
               <h3><strong><%= link_to offer.job.title, offer.job %></strong></h3>
-              <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br><br>
-              <h4 class="main-color">Client: </h4><p><%= link_to offer.client.name, offer.client  %></p><br>
+              <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
+              <h4 class="main-color">Client: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
             <% end %>
           <% end %>
         </div>

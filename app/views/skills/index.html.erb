@@ -1,2 +1,34 @@
-<h1>Skills#index</h1>
-<p>Find me in app/views/skills/index.html.erb</p>
+<div class="container">
+  <h1 class="main-color skills" %>SKILLS</h1>
+  <div class="row " %>
+  <% @skills.each do |skill| %>
+    <p class="btn btn-default skill", onclick="show(<%= skill.id%>)">
+      <%= link_to skill.name, "#" %>
+    </p>
+  <% end %>
+  </div>
+  <br>
+  <div class="container">
+    <% @skills.each do |skill| %>
+      <div class="jobs skills_jobs" id="<%="skill_jobs_#{skill.id}"%>">
+        <h1 class="row main-color">Jobs</h1>
+          <% skill.jobs.each do |job| %>
+            <% unless job.contractor == current_user %>
+              <%= div_for(job, class: "odd" ) do %>
+                <h3><strong><%= link_to job.title, job %></strong></h3>
+                <h4 class="main-color">Description: </h4> <p><%= job.description %></p>
+                <%= form_for([job, job.requests.build]) do |f| %>
+                  <%= f.submit "Make offer", class: "btn btn-primary" %><br><br>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <br>
+        <p class="btn btn-info skill">
+          <%= link_to "Go To Skill", skill %>
+        </p>
+      </div>
+
+    <% end %>
+  </div>
+</div>
