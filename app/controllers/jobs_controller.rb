@@ -25,10 +25,7 @@ class JobsController < ApplicationController
     new_skills.each do |skill_name|
       skills = Skill.where("lower(name) = ?", skill_name.downcase)
       skill = skills.empty? ? Skill.create(name: skill_name) : skills.first
-      # binding.pry
       job.skills << skill 
-      # skill.jobs << job 
-      # skill.save
     end
     redirect_to jobs_path if job.save
   end
