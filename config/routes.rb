@@ -13,5 +13,9 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   post '/search' => 'search#search'
+
+  resources :conversations do
+    resources :messages
+  end
   
 end

@@ -72,3 +72,5 @@ gem 'faker'
 gem 'rmagick'
 
 gem 'carrierwave', '~> 0.10.0'
+
+gem 'private_pub'
