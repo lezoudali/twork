@@ -5,9 +5,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path, :notice => "Signed in!"
     else
-      user = User.create_with_omniauth(auth)
-      session[:user_id] = user.id
-      redirect_to edit_user_path(user)
+      @user = User.new_with_omniauth(auth)
+      render '/users/new'
     end
   end
 
