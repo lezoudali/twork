@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   has_many :skills, through: :user_skills
   has_many :requests, foreign_key: :client_id
   has_many :offers, through: :jobs, source: :requests
+  has_many :notifications
+
+  acts_as_messageable
 
   def self.new_with_omniauth(auth)
     first_name, last_name = auth[:info][:name].strip.split(/\s+/)
@@ -26,6 +29,18 @@ class User < ActiveRecord::Base
       file << open(auth[:info][:image].gsub("_normal", "")).read
     end
     user
+  end
+
+  def partners
+    self.offers.map do |offer|
+      offer.client
+    end.uniq do |user|
+      user.id
+    end
+  end
+
+  def mailboxer_email(object)
+    self.email
   end
 
   def unread_offers

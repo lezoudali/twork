@@ -13,36 +13,38 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li><p class="navbar-text">Signed in as 
+          <li><p class="navbar-text">
             <%= link_to current_user.name, current_user %></a>
           </p></li>
 
+          <li><p class="navbar-text">
+            <%= link_to "Inbox", mailbox_inbox_path %></a>
+          </p></li>
 
           <li class="dropdown">
             <a href data-toggle="dropdown">
               <span class="label label-info">
-                <%= current_user.unread_offers.count %>
+                <%= current_user.notifications.count %>
               </span>
             </a>
-            <% if current_user.unread_offers.count > 0 %>
+            <% if current_user.notifications.count > 0 %>
               <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenu">
-                <% current_user.unread_offers.group_by {|x| x.job_id}.each do |job_id, offers| %>
-                  <li role="presentation" class="dropdown-header"><%= offers.first.job.title %></li>
-                  <% offers.each do |offer| %>
-                    <li>
-                      <a href="/users/<%= offer.client.id %>">
-                        <strong><%= offer.client.name %></strong>
-                        <%= form_tag "/requests/#{offer.id}", method: "patch" do %>
+                <% current_user.notifications.each do |notification| %>
+                  <li>
+                    <a href="/jobs/<%= notification.job.id %>">
+                      <strong><%= notification.sender.name %></strong><%= notification.to_s %>
+                      <% if notification.kind == "offer" %>
+                        <%= form_tag "/requests/#{notification.request.id}", method: "patch" do %>
                           <%= hidden_field_tag :accepted, true %>
                           <%= submit_tag :Accept, class: "btn btn-xs btn-primary" %>
                         <% end %>
-                        <%= form_tag "/requests/#{offer.id}", method: "patch" do %>
+                        <%= form_tag "/requests/#{notification.request.id}", method: "patch" do %>
                           <%= hidden_field_tag :accepted, false %>
                           <%= submit_tag :Decline, class: "btn btn-xs btn-danger" %>
                         <% end %>
-                      </a>
-                    </li>
-                  <% end %>
+                      <% end %>
+                    </a>
+                  </li>
                 <% end %>
               </ul>
             <% end %>
