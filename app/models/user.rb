@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
     File.join(Rails.root, "/app/assets/images/profile/#{self.uid}.jpg")
   end
 
-  def name 
+  def name
     first_name + " " + last_name
   end
 end

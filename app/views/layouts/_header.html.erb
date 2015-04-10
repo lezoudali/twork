@@ -31,7 +31,7 @@
               <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenu">
                 <% current_user.notifications.each do |notification| %>
                   <li>
-                    <a href="/jobs/<%= notification.job.id %>">
+                    <a href="/">
                       <strong><%= notification.sender.name %></strong><%= notification.to_s %>
                       <% if notification.kind == "offer" %>
                         <%= form_tag "/requests/#{notification.request.id}", method: "patch" do %>
