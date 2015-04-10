@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409223048) do
+ActiveRecord::Schema.define(version: 20150410163905) do
 
   create_table "job_skills", force: :cascade do |t|
     t.integer  "job_id"
@@ -86,6 +86,22 @@ ActiveRecord::Schema.define(version: 20150409223048) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "kind"
+    t.integer  "sender_id"
+    t.integer  "user_id"
+    t.integer  "job_id"
+    t.integer  "request_id"
+    t.boolean  "read",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "notifications", ["job_id"], name: "index_notifications_on_job_id"
+  add_index "notifications", ["request_id"], name: "index_notifications_on_request_id"
+  add_index "notifications", ["sender_id"], name: "index_notifications_on_sender_id"
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
 
   create_table "requests", force: :cascade do |t|
     t.integer  "job_id"

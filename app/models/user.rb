@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :skills, through: :user_skills
   has_many :requests, foreign_key: :client_id
   has_many :offers, through: :jobs, source: :requests
+  has_many :notifications
 
   acts_as_messageable
 
