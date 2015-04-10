@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_logged_in
-    binding.pry
     safe_paths = ["/", "/auth/twitter", "/auth/twitter/callback"]
     unless logged_in? || safe_paths.include?(request.fullpath)
       flash[:alert] = "Please log in"
