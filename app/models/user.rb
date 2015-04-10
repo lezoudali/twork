@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   def partners
     self.offers.map do |offer|
       offer.client
+    end.uniq do |user|
+      user.id
     end
   end
 
