@@ -17,15 +17,15 @@ class RequestsController < ApplicationController
   end
 
   def update
-    request = Request.find(params[:id])
-    request.accepted = params[:accepted]
-    if request.save
+    @request = Request.find(params[:id])
+    @request.accepted = params[:accepted]
+    if @request.save
       notification = Notification.new(
-        user_id: request.client.id, sender_id: current_user.id, request_id: request.id
+        user_id: @request.client.id, sender_id: current_user.id, request_id: @request.id
       )
       notification.kind = params[:accepted] ? "accepted" : "declined"
       notification.save
     end
-    redirect_to request.headers["HTTP_REFERER"]
+    redirect_to @request.headers["HTTP_REFERER"]
   end
 end
