@@ -1,15 +1,18 @@
-<h1>Job Listings</h1>
-
-<% Job.all.reverse.each do |j| %>
-  <h3><strong><%= link_to j.title, j %></strong></h3>
-  <h4><%= link_to j.contractor.name, j.contractor %></h4>
-  <p>Description: <%= j.description %></p>
-  <p>Skills:</p>
-  <% j.skills.each do |s| %>
-    <%= s.name %>
+<div class="jobs">
+  <h1 class="row main-color">Job Listings</h1>
+  <% @jobs.reverse.each do |job| %>
+    <%= div_for(job, class: "  row #{cycle("odd", "even")}") do %>
+      <h3><strong><%= link_to job.title, job %></strong></h3>
+      <p><%= job.description %></p><br>
+      <% job.skills.each do |skill| %>
+        <%= link_to skill.name, skill_path(skill), class: "label label-success" %>
+      <% end %><br><br>
+      <% unless job.contractor == current_user %>
+        <%= form_for([job, job.requests.build]) do |f| %>
+          <%= f.submit "Make offer", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+      <br>
+    <% end %>
   <% end %>
-  <%= form_for([j, j.requests.build]) do |f| %>
-  <%= f.submit "Make offer", class: "btn btn-primary" %>
-  <% end %>
-  <br>
-<% end %>
+</div>

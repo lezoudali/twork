@@ -6,6 +6,9 @@
 <% @job.skills.each do |s| %>
   <%= s.name %>
 <% end %>
-<%= form_for([@job, @job.requests.build]) do |f| %>
-<%= f.submit "Make offer", class: "btn btn-primary" %>
+
+<% unless @job.contractor == current_user %>
+  <%= form_for([@job, @job.requests.build]) do |f| %>
+    <%= f.submit "Make offer", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
