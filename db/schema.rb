@@ -11,21 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150409222339) do
-=======
 ActiveRecord::Schema.define(version: 20150409223048) do
-
-  create_table "conversations", force: :cascade do |t|
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id"
-  add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id"
->>>>>>> privatemessages
 
   create_table "job_skills", force: :cascade do |t|
     t.integer  "job_id"
@@ -100,17 +86,6 @@ ActiveRecord::Schema.define(version: 20150409223048) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
-
-  create_table "messages", force: :cascade do |t|
-    t.text     "body"
-    t.integer  "conversation_id"
-    t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "requests", force: :cascade do |t|
     t.integer  "job_id"
