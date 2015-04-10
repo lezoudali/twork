@@ -14,15 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   def check_logged_in
-    safe_paths = ["/", "/auth/twitter", "/auth/twitter/callback", "/users/new"]
+    safe_paths = ["/", "/auth/twitter", "/auth/twitter/callback", "/users/new", "/users"]
     unless logged_in? || safe_paths.include?(request.env["REQUEST_PATH"])
       flash[:alert] = "Please log in"
       redirect_to root_path
     end
-  end
-
-
-  def log_in(user)
-    session[:user_id] = user.id
   end
 end

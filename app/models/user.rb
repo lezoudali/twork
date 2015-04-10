@@ -20,11 +20,10 @@ class User < ActiveRecord::Base
       bio: auth[:info][:description]
     )
 
-    image_location = File.join(Rails.root, "/app/assets/images/profile/#{user.id}.jpg")
-    open(image_location, "wb") do |file|
+    # image_location = File.join(Rails.root, "/app/assets/images/profile/#{user.uid}.jpg")
+    open(user.twitter_image_location, "wb") do |file|
       file << open(auth[:info][:image].gsub("_normal", "")).read
     end
-    user.image = File.open(image_location)
     user
   end
 
@@ -50,4 +49,7 @@ class User < ActiveRecord::Base
     jobs.where(completed: false)
   end
 
+  def twitter_image_location
+    File.join(Rails.root, "/app/assets/images/profile/#{self.uid}.jpg")
+  end
 end

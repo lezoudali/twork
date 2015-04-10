@@ -23,6 +23,8 @@
   <%= f.file_field :image, placeholder: "Image" %>
 </div>
 
+<%= f.hidden_field :uid, value: @user.uid %>
+<%= f.hidden_field :twitter_handle, value: @user.twitter_handle %>
 
 <%= f.submit "Save Changes", class: 'form-control btn btn-primary' %>
 
