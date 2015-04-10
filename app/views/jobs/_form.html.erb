@@ -1,0 +1,35 @@
+<div class="form-group">
+  <% if @job.errors.any? %>
+    <div id="error_explanation" class= "alert alert-danger alert-dismissable">
+      <button class="alert close" data-dismiss="alert" aria-hidden="true">×</button>
+      <p><%= pluralize(@job.errors.count, "error") %> prohibited this author from being saved:</p>
+      <ul>
+      <% @job.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= f.label :title %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :description %>
+  <%= f.text_area :description, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :skills %>
+  <%= f.select :skill_ids, Skill.all.collect {|s| [s.name.downcase, s.id]}.sort, {}, { multiple: true, class: "form-control" } %>
+</div>
+
+<div class="form-group">
+  <%= label_tag :new_skills, "New Skills" %>
+  <%= text_field_tag :new_skills,"",  class: "form-control", placeholder: "Separate by commas" %>
+</div>
+
+<%= f.submit class: "btn btn-primary form-control" %>

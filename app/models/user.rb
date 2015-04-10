@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
-
+  include Skillable
+  
   mount_uploader :image, ImageUploader
 
-  validates_presence_of :email
+  validates_presence_of :first_name, :last_name
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 
   has_many :jobs, foreign_key: :contractor_id
@@ -12,15 +13,15 @@ class User < ActiveRecord::Base
   has_many :offers, through: :jobs, source: :requests
 
   def self.new_with_omniauth(auth)
+    first_name, last_name = auth[:info][:name].strip.split(/\s+/)
     user = User.new(
-      name: auth[:info][:name], 
+      first_name: first_name, 
+      last_name: last_name,
       provider: auth[:provider], 
       uid: auth[:uid],
       twitter_handle: auth[:info][:nickname],
       bio: auth[:info][:description]
     )
-
-    # image_location = File.join(Rails.root, "/app/assets/images/profile/#{user.uid}.jpg")
     open(user.twitter_image_location, "wb") do |file|
       file << open(auth[:info][:image].gsub("_normal", "")).read
     end
@@ -51,5 +52,9 @@ class User < ActiveRecord::Base
 
   def twitter_image_location
     File.join(Rails.root, "/app/assets/images/profile/#{self.uid}.jpg")
+  end
+
+  def name 
+    first_name + " " + last_name
   end
 end

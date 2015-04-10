@@ -5,6 +5,10 @@ class JobsController < ApplicationController
     @jobs = Job.all
   end
 
+  def edit 
+    redirect_to @job unless @job.contractor == current_user
+  end
+
   def show
     @job = Job.find(params[:id])
   end
@@ -20,18 +24,21 @@ class JobsController < ApplicationController
   end
 
   def create
-    job = Job.new(job_params)
-    job.contractor = current_user
-    new_skills = params[:new_skills].split(/,\s?/)
-    new_skills.each do |skill_name|
-      skills = Skill.where("lower(name) = ?", skill_name.downcase)
-      skill = skills.empty? ? Skill.create(name: skill_name) : skills.first
-      job.skills << skill 
+    @job = Job.new(job_params)
+    @job.contractor = current_user
+    if @job.valid?
+      get_new_skills
+      redirect_to jobs_path if @job.save
+    else
+      render 'new'
     end
-    redirect_to jobs_path if job.save
   end
 
   private 
+
+  def get_new_skills
+    @job.add_new_skills(params[:new_skills].split(/,\s?/))
+  end
 
   def set_job
     @job = Job.find(params[:id])
