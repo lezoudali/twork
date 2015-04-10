@@ -74,3 +74,6 @@ gem 'rmagick'
 gem 'carrierwave', '~> 0.10.0'
 
 gem 'kaminari'
+
+gem 'mailboxer'
+gem 'chosen-rails'
