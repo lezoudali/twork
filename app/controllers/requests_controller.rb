@@ -4,7 +4,11 @@ class RequestsController < ApplicationController
     job = Job.find(params[:job_id])
     if @request.save
       Notification.create(
-        user_id: job.contractor.id, sender_id: current_user.id, job_id: params[:job_id], kind: "offer"
+        user_id: job.contractor.id, 
+        sender_id: current_user.id, 
+        request_id: @request.id,
+        job_id: params[:job_id], 
+        kind: "offer"
       )
       
       # UserMailer.request_made_email(job.contractor).deliver_now
