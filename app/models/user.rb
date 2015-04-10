@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :requests, foreign_key: :client_id
   has_many :offers, through: :jobs, source: :requests
 
+  acts_as_messageable
+
   def self.create_with_omniauth(auth)
     user = User.create(
       name: auth[:info][:name], 
@@ -24,6 +26,16 @@ class User < ActiveRecord::Base
     user.image = File.open(image_location)
     user.save
     user
+  end
+
+  def partners
+    self.offers.map do |offer|
+      offer.client
+    end
+  end
+
+  def mailboxer_email(object)
+    self.email
   end
 
   def unread_offers
