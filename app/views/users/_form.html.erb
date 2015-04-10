@@ -44,6 +44,7 @@
 
 <%= f.hidden_field :uid, value: @user.uid %>
 <%= f.hidden_field :twitter_handle, value: @user.twitter_handle %>
+<%= f.hidden_field :provider, value: @user.provider %>
 
 <%= f.submit class: 'form-control btn btn-primary' %>
 

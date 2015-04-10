@@ -14,7 +14,8 @@ class UsersController < ApplicationController
     set_image if user_params[:image].nil? && File.exists?(@user.twitter_image_location)
     if @user.valid?
       get_new_skills
-      log_in if @user.save
+      @user.save
+      log_in
       redirect_to jobs_path
     else
       render 'new'
@@ -68,7 +69,8 @@ class UsersController < ApplicationController
         :email, 
         :bio, 
         :image, 
-        :uid, 
+        :uid,
+        :provider, 
         :twitter_handle, 
         skills_ids: []
         )
