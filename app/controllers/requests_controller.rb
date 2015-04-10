@@ -26,6 +26,6 @@ class RequestsController < ApplicationController
       notification.kind = params[:accepted] ? "accepted" : "declined"
       notification.save
     end
-    redirect_to @request.headers["HTTP_REFERER"]
+    redirect_to request.headers["HTTP_REFERER"]
   end
 end
