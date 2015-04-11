@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update]
 
   def index
-    @jobs = Job.all
+    @jobs = Job.paginate(page: params[:page], per_page: 5).order('created_at DESC')
   end
 
   def edit 

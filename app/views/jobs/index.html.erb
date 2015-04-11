@@ -1,18 +1,29 @@
-<div class="jobs">
+<div class="page-header">
   <h1 class="row main-color">Job Listings</h1>
-  <% @jobs.reverse.each do |job| %>
-    <%= div_for(job, class: "  row #{cycle("odd", "even")}") do %>
-      <h3><strong><%= link_to job.title, job %></strong></h3>
-      <p><%= job.description %></p><br>
-      <% job.skills.each do |skill| %>
-        <%= link_to skill.name, skill_path(skill), class: "label label-success" %>
-      <% end %><br><br>
-      <% unless job.contractor == current_user %>
-        <%= form_for([job, job.requests.build]) do |f| %>
-          <%= f.submit "Make offer", class: "btn btn-primary" %>
-        <% end %>
+</div>
+
+<% @jobs.each do |job| %>
+  <%= div_for(job, class: "row #{cycle("odd", "even")}") do %>
+
+    <h3><strong><%= link_to job.title, job %></strong></h3>
+
+    <p><%= job.description %></p><br><br> 
+
+    <% job.skills.each do |skill| %>
+      <p class= "label label-success" ><%= skill.name %></p>
+    <% end %><br>
+    
+    <% unless job.contractor == current_user %>
+      <%= form_for([job, job.requests.build]) do |f| %>
+        <%= f.submit "Make offer", class: "btn btn-primary" %>
       <% end %>
-      <br>
     <% end %>
+    <br>
+
   <% end %>
+<% end %>
+
+
+<div id="infinite-scrolling">
+  <%= will_paginate %>
 </div>

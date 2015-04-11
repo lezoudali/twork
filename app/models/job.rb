@@ -9,5 +9,6 @@ class Job < ActiveRecord::Base
   accepts_nested_attributes_for :skills
 
   validates :title, length: {minimum: 10}
-  validates :description, length: {in: 10..40}
+  validates :description, length: {maximum: 250}
+
 end

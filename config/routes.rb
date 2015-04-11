@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :skills, only: [:index, :show]
+  resources :skills, only: [:index]
 
   root to: "welcome#index"
   resources :sessions
