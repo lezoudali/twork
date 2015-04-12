@@ -32,7 +32,7 @@
                 <% current_user.notifications.each do |notification| %>
                   <li>
                     <a href="/">
-                      <strong><%= notification.sender.name %></strong><%= notification.to_s %>
+                      <strong><%= notification.sender.name %></strong> <%= notification.to_s %>
                       <% if notification.kind == "offer" %>
                         <%= form_tag "/requests/#{notification.request.id}", method: "patch" do %>
                           <%= hidden_field_tag :accepted, true %>
@@ -41,6 +41,11 @@
                         <%= form_tag "/requests/#{notification.request.id}", method: "patch" do %>
                           <%= hidden_field_tag :accepted, false %>
                           <%= submit_tag :Decline, class: "btn btn-xs btn-danger" %>
+                        <% end %>
+                      <% else %>
+                        <%= form_tag "/notifications/#{notification.id}", method: "delete" do %>
+                          <%= hidden_field_tag :accepted, true %>
+                          <%= submit_tag :x, class: "btn btn-xs btn-danger" %>
                         <% end %>
                       <% end %>
                     </a>

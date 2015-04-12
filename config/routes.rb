@@ -36,5 +36,6 @@ Rails.application.routes.draw do
     end
   end
 
-  
+  delete "/notifications/:id" => "notifications#delete"
+  match ':controller(/:action(/:id))', via: :get
 end
