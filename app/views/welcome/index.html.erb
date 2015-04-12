@@ -1,10 +1,10 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
 
-<% if !logged_in? %>
-  <%= link_to "Login With Twitter", "/auth/twitter" %>
-<% end %>
 
-<div class="big-bg">
-  
-</div>
+
+  <div class="big-bg">
+    <%= link_to image_tag('logo-icon.png'), "/", class: "center" %>
+    <h1 class="slogan text-center">Join the Twork Team and Start Trading Work.</h1>
+    <a href="/auth/twitter" class="btn btn-lg twitter-btn main-color">
+      Login In With Twitter
+    </a>
+  </div>

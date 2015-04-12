@@ -11,4 +11,32 @@
   height: 100%;
   background-image: image_url("tools.jpg");
   background-size: cover;
+    .twitter-btn {
+      display: block;
+      border: 3px #fff solid;
+      color: #fff;
+      text-align: center;
+      width: 320px;
+      margin: 50px auto 0;
+      font-size: 2.5rem;
+      font-weight: 500;
+  }
+  .twitter-btn:hover{
+    color: #010652;
+    border: 3px #010652 solid;
+  }
+}
+
+.slogan {
+  margin-top: 250px;
+  font-size: 4rem;
+  color: #fff;
+}
+
+
+.center {
+  margin: 0 auto;
+  img {
+    margin: 0 auto;
+  }
 }
