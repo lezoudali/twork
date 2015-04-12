@@ -1,17 +1,28 @@
+<div class="row">
+<div class="col col-sm-10">
+  <h2 class="main-color"><%= @receipts.first.message.subject %></h2>
+</div>
+<div class="col col-sm-2">
+  <%= link_to 'Move to trash', trash_conversation_path(conversation), class: 'btn btn-danger', method: :post, data: {confirm: 'Are you sure?'} %>
+</div>
+</div>
+<hr>
 <% @receipts.each do |receipt| %>
-    <% message = receipt.message %>
-    <div class="media">
-      <div class="media-left">
-        <!-- user avators can go here -->
-        <%= image_tag(current_user.image_url(:thumb), class: "img-thumbnail") %>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">
-          <%= message.sender.name %> <br>
-          <small><b>Subject: </b><%= message.subject %></small><br>
-          <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
-        </h4>
-        <%= message.body %>
-      </div>
+  <% message = receipt.message %>
+  <div class="media">
+    <div class="media-left">
+      <!-- user avators can go here -->
     </div>
+    <div class="media-body <%= message.sender == current_user ? 'float-right' : '' %>">
+      <div class="flexbox">
+        <%= image_tag(message.sender.image_url(:thumb), class: "img-circle", width: 50, height: 50) %>
+        <div class="message"><%= message.body %></div>
+      </div>
+      <% if message.created_at == Date.today %>
+        <small><%=  message.created_at.strftime("%I:%M%p") %></small>
+      <% else %>
+        <small><%=  message.created_at.strftime("%b %d") %></small>
+      <% end%>
+    </div>
+  </div>
 <% end %>
