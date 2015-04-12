@@ -75,5 +75,4 @@ class UsersController < ApplicationController
         skills_ids: []
         )
   end 
-
 end

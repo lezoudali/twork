@@ -22,10 +22,12 @@
   <%= f.text_area :description, class: "form-control" %>
 </div>
 
+<% if Skill.all.present? %>
 <div class="form-group">
   <%= f.label :skills %>
   <%= f.select :skill_ids, Skill.all.collect {|s| [s.name.downcase, s.id]}.sort, {}, { multiple: true, class: "form-control" } %>
 </div>
+<% end %>
 
 <div class="form-group">
   <%= label_tag :new_skills, "New Skills" %>
