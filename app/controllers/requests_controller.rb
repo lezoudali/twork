@@ -2,6 +2,8 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(job_id: params[:job_id], client_id: current_user.id)
     job = Job.find(params[:job_id])
+
+    begin
     if @request.save
       Notification.create(
         user_id: job.contractor.id, 
@@ -10,10 +12,14 @@ class RequestsController < ApplicationController
         job_id: params[:job_id], 
         kind: "offer"
       )
-      
-      # UserMailer.request_made_email(job.contractor).deliver_now
-      redirect_to '/jobs', notice: "Offer Made for '#{job.title}'!"
+      flash[:notice] = "Offer Made for '#{job.title}'!"
     end
+    rescue
+      flash[:info] = "You've already made an offer for '#{job.title}'!"
+    end
+    
+    redirect_to '/jobs'
+      # UserMailer.request_made_email(job.contractor).deliver_now
   end
 
   def update

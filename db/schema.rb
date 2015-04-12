@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410173126) do
+ActiveRecord::Schema.define(version: 20150412180537) do
 
   create_table "job_skills", force: :cascade do |t|
     t.integer  "job_id"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20150410173126) do
     t.boolean  "accepted"
   end
 
+  add_index "requests", ["client_id", "job_id"], name: "index_requests_on_client_id_and_job_id", unique: true
   add_index "requests", ["client_id"], name: "index_requests_on_client_id"
   add_index "requests", ["job_id"], name: "index_requests_on_job_id"
 
