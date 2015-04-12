@@ -23,7 +23,7 @@ class RequestsController < ApplicationController
       notification = Notification.new(
         user_id: @request.client.id, sender_id: current_user.id, request_id: @request.id
       )
-      notification.kind = params[:accepted] ? "accepted" : "declined"
+      notification.kind = params[:accepted] == "true" ? "accepted" : "declined"
       notification.save
     end
     redirect_to controller: 'Notifications', action: 'delete', id: @request.notifications.first.id
