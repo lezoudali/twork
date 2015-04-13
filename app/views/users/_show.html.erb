@@ -32,9 +32,9 @@
         <p><%= @user.bio %></p><br>
       </div>
     </div>
+    <h1 class="row main-color">Jobs</h1>
     <% if @user.jobs.present? %>
     <div class="jobs">
-      <h1 class="row main-color">Jobs</h1>
       <% @user.jobs.each do |job| %>
         <%= div_for(job, class: "  row #{cycle("odd", "even")}") do %>
           <h3><strong><%= link_to job.title, job, class: 'main-color' %></strong></h3>
@@ -43,13 +43,22 @@
             <%= form_for([job, job.requests.build]) do |f| %>
             <%= f.submit "Make offer", class: "btn btn-primary" %>
             <% end %>
+          <% else %>
+            <div class="inline-button">
+              <%= link_to :Edit, edit_job_path(job), class: "btn btn-sm btn-primary" %>
+              <%= form_tag "/jobs/#{job.id}", method: "delete" do %>
+                <%= submit_tag :Destroy, class: "btn btn-sm btn-danger" %>
+              <% end %>
+            </div>
           <% end %>
           <br>
         <% end %>
       <% end %>
     </div>
-
-    
+    <% else %>
+      <br>
+      <h3 class="main-color"> You have not created any jobs yet!</h3>
+      <br>
     <% end %>
   </div>
 

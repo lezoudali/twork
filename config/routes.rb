@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
 
 
-  resources :jobs do 
+  resources :jobs do
+    member do 
+      delete :destroy
+    end
+     
     resources :requests
   end
 
@@ -35,6 +39,7 @@ Rails.application.routes.draw do
       post :untrash
     end
   end
+
 
   delete "/notifications/:id" => "notifications#delete"
   match ':controller(/:action(/:id))', via: :get

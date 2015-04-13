@@ -20,7 +20,7 @@
                   <h3><strong><%= link_to offer.job.title, offer.job, class: 'main-color' %></strong></h3>
                   <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
                   <h4 class="main-color">Contractor: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
-                  <div class="accept_decline">
+                  <div class="inline-button">
                   <%= form_tag "/requests/#{offer.id}", method: "patch" do %>
                     <%= hidden_field_tag :accepted, true %>
                     <%= submit_tag :Accept, class: "btn btn-xs btn-primary" %>

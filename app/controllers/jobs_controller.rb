@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update]
+  before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index
     @jobs = Job.paginate(page: params[:page], per_page: 5).order('created_at DESC')
@@ -32,6 +32,12 @@ class JobsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    contractor = @job.contractor
+    @job.destroy 
+    redirect_to user_path(contractor)
   end
 
   private 
