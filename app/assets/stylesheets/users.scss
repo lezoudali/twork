@@ -27,6 +27,12 @@
 
 .odd {
   background-color: #F8F8F8;
+  border-radius: 7px;
+  padding-left: 5px;
+}
+
+.even {
+  padding-left: 5px;
 }
 
 .profile-info p, .profile-bio p {

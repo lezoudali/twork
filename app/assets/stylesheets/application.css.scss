@@ -20,7 +20,15 @@
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
  */
+
+
 @import "bootstrap";
+
+* {
+  font-family: 'Open Sans', serif;
+  font-weight: 600;
+}
+
 /* Some Style from the Bootstrap Default Theme */
 .container-fluid {
   padding-left: 50px;
@@ -28,19 +36,12 @@
 }
 
 body {
-  /*padding-top: 70px;*/
-  padding-bottom: 30px;
-
-        
-  background: #EAECEE;
-
-  /*background: #EEEBE2;*/
-  
-        
+  padding-bottom: 30px;    
+  background: #EAECEE;   
 }
 
 .navbar {
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .login {
