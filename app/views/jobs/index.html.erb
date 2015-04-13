@@ -1,5 +1,10 @@
 <div class="page-header">
+  <div>
   <h1 class="row main-color">Job Listings</h1>
+  </div>
+</div>
+<div>
+  <%= link_to "Search by skills", skills_path, class: "btn btn-primary" %>
 </div>
 
 <% @jobs.each do |job| %>
