@@ -1,3 +1,44 @@
 // Place all the styles related to the mailbox controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.panel-body .btn {
+  float: right;
+}
+
+.media-body {
+  float: left;
+
+  .message {
+    border-radius: 50px;
+    padding: 10px 20px;
+    background-color: #E1E8ED;
+  }
+
+  .flexbox {
+    display: flex;
+  }
+
+  img {
+    flex-shrink: 0;
+    margin-right: 10px;
+  }
+}
+
+.media-body.float-right {
+  float: right;
+  text-align: right;
+
+  .message {
+    background-color: #3B94D9;
+    order: 1;
+    color: #fff;
+  }
+
+  img {
+    float: right;
+    order: 2;
+    margin-right: 0;
+    margin-left: 10px;
+  }
+}

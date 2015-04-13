@@ -8,7 +8,9 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
-<%= render 'layouts/header' %>
+<% unless request.env["REQUEST_PATH"] == "/" %>
+  <%= render 'layouts/header' %>
+<% end %>
 
 <div class="container">
 <% flash.each do |key, value| %>

@@ -6,6 +6,22 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def new
+  end
+
+  def create
+    @user = User.new(user_params)
+    set_image if user_params[:image].nil? && File.exists?(@user.twitter_image_location)
+    if @user.valid?
+      get_new_skills
+      @user.save
+      log_in
+      redirect_to jobs_path
+    else
+      render 'new'
+    end
+  end
+
   def jobs
     @jobs = @user.jobs
   end
@@ -24,18 +40,39 @@ class UsersController < ApplicationController
     skill_names.each do |name|
       @user.skills.create(name: name)
     end
-
     redirect_to user_path(@user)
   end
 
 
   private
+
+  def get_new_skills
+    @user.add_new_skills(params[:new_skills].split(/,\s?/))
+  end
+
+  def set_image
+    @user.image = File.open(@user.twitter_image_location)
+  end
+
+  def log_in
+    session[:user_id] = @user.id
+  end
+
   def set_user
     @user = User.find(params[:id])
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :bio, :image)
+    params.require(:user).
+      permit(:first_name,
+        :last_name,
+        :email, 
+        :bio, 
+        :image, 
+        :uid,
+        :provider, 
+        :twitter_handle, 
+        skills_ids: []
+        )
   end 
-
 end

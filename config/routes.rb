@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :skills, only: [:index, :show]
+  resources :skills, only: [:index]
 
   root to: "welcome#index"
   resources :sessions
@@ -36,5 +36,6 @@ Rails.application.routes.draw do
     end
   end
 
-  
+  delete "/notifications/:id" => "notifications#delete"
+  match ':controller(/:action(/:id))', via: :get
 end

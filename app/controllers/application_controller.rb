@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   
   private
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id].present?
+    @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id].present?
   end
  
   def logged_in?
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_logged_in
-    safe_paths = ["/", "/auth/twitter", "/auth/twitter/callback"]
+    safe_paths = ["/", "/auth/twitter", "/auth/twitter/callback", "/users/new", "/users"]
     unless logged_in? || safe_paths.include?(request.env["REQUEST_PATH"])
       flash[:alert] = "Please log in"
       redirect_to root_path

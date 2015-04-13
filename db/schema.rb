@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409223048) do
+ActiveRecord::Schema.define(version: 20150412180537) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -108,6 +108,22 @@ ActiveRecord::Schema.define(version: 20150409223048) do
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
+  create_table "notifications", force: :cascade do |t|
+    t.string   "kind"
+    t.integer  "sender_id"
+    t.integer  "user_id"
+    t.integer  "job_id"
+    t.integer  "request_id"
+    t.boolean  "read",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "notifications", ["job_id"], name: "index_notifications_on_job_id"
+  add_index "notifications", ["request_id"], name: "index_notifications_on_request_id"
+  add_index "notifications", ["sender_id"], name: "index_notifications_on_sender_id"
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
+
   create_table "requests", force: :cascade do |t|
     t.integer  "job_id"
     t.integer  "client_id"
@@ -116,6 +132,7 @@ ActiveRecord::Schema.define(version: 20150409223048) do
     t.boolean  "accepted"
   end
 
+  add_index "requests", ["client_id", "job_id"], name: "index_requests_on_client_id_and_job_id", unique: true
   add_index "requests", ["client_id"], name: "index_requests_on_client_id"
   add_index "requests", ["job_id"], name: "index_requests_on_job_id"
 
@@ -136,7 +153,7 @@ ActiveRecord::Schema.define(version: 20150409223048) do
   add_index "user_skills", ["user_id"], name: "index_user_skills_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "first_name"
     t.string   "email"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -145,6 +162,7 @@ ActiveRecord::Schema.define(version: 20150409223048) do
     t.string   "image"
     t.text     "bio"
     t.string   "twitter_handle"
+    t.string   "last_name"
   end
 
 end

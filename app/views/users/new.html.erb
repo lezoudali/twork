@@ -1,0 +1,8 @@
+<div class="row">
+  <div class= "col-sm-6 col-sm-offset-3">
+    <h1 class="main-color">Create Profile</h1><br>
+    <%= form_for @user, html: {multipart: true} do |f| %>
+      <%= render 'users/form', f: f %>
+    <% end %>
+  </div>
+</div>

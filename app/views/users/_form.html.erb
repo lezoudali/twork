@@ -1,10 +1,29 @@
 <div class="form-group">
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control', placeholder: "Name" %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class= "alert alert-danger alert-dismissable">
+      <button class="alert close" data-dismiss="alert" aria-hidden="true">×</button>
+      <p><%= pluralize(@user.errors.count, "error") %> prohibited this author from being saved:</p>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= f.label :first_name, "First Name *" %>
+  <%= f.text_field :first_name, class: 'form-control', placeholder: "Name" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :last_name, "Last Name *" %>
+  <%= f.text_field :last_name, class: 'form-control', placeholder: "Name" %>
 </div>    
 
 <div class="form-group">
-  <%= f.label :email %>
+  <%= f.label :email, "Email *" %>
   <%= f.email_field :email, class: 'form-control', placeholder: "Email" %>
 </div>
 
@@ -14,8 +33,8 @@
 </div>
 
 <div class="form-group">
-  <%= label_tag :skill %>
-  <%= text_field_tag :skill, "", class: 'form-control', placeholder: "Separate skills by comma" %>
+  <%= label_tag :new_skills, "Skills" %>
+  <%= text_field_tag :new_skills,"",  class: "form-control", placeholder: "Separate by commas" %>
 </div>
 
 <div class="form-group">
@@ -23,8 +42,11 @@
   <%= f.file_field :image, placeholder: "Image" %>
 </div>
 
+<%= f.hidden_field :uid, value: @user.uid %>
+<%= f.hidden_field :twitter_handle, value: @user.twitter_handle %>
+<%= f.hidden_field :provider, value: @user.provider %>
 
-<%= f.submit "Update", class: 'form-control btn btn-primary' %>
+<%= f.submit class: 'form-control btn btn-primary' %>
 
 
 
