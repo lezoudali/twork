@@ -11,7 +11,7 @@
 
     <% job.skills.each do |skill| %>
       <p class= "label label-success" ><%= skill.name %></p>
-    <% end %><br>
+    <% end %><br><br>
     
     <% unless job.contractor == current_user %>
       <%= form_for([job, job.requests.build]) do |f| %>
