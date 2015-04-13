@@ -34,7 +34,7 @@
       <% if @searches[:skills].present? %>
         <% @searches[:skills].each do |skill| %>
           <%= div_for(skill, class: "row #{cycle("odd", "even")}") do %>
-            <h3><strong><%= link_to skill.name, skill_path(skill) %></strong></h3>
+            <h3><strong><%= skill.name %></strong></h3>
           <% end %>
         <% end %> 
       <% else %>

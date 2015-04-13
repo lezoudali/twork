@@ -6,7 +6,7 @@
         <h3><strong><%= link_to job.title, job %></strong></h3>
         <p><%= job.description %></p><br>
         <% job.skills.each do |skill| %>
-          <%= link_to skill.name, skill_path(skill), class: "label label-success" %>
+          <p class="label label-success"></p>
         <% end %><br>
         <% unless confirmed_logged_in? %>
           <%= form_for([job, job.requests.build]) do |f| %>
