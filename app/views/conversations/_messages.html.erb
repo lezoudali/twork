@@ -3,7 +3,7 @@
   <h2 class="main-color"><%= @receipts.first.message.subject %></h2>
 </div>
 <div class="col col-sm-2">
-  <%= link_to 'Move to trash', trash_conversation_path(conversation), class: 'btn btn-danger', method: :post, data: {confirm: 'Are you sure?'} %>
+  <%= link_to 'Move to trash', trash_conversations_path, class: 'btn btn-danger', method: :post, data: {confirm: 'Are you sure?'} %>
 </div>
 </div>
 <hr>
