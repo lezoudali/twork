@@ -36,7 +36,12 @@ class JobsController < ApplicationController
 
   def destroy
     contractor = @job.contractor
-    @job.destroy 
+    if contractor == current_user
+      job = @job.destroy 
+      flash[:notice] = "Successfully destroy '#{job.title}'!"
+    else
+      flash[:warning] = "Access Denied!!!"
+    end
     redirect_to user_path(contractor)
   end
 
