@@ -22,9 +22,21 @@
  */
 @import "bootstrap";
 /* Some Style from the Bootstrap Default Theme */
+.container-fluid {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 body {
   /*padding-top: 70px;*/
   padding-bottom: 30px;
+
+        
+  background: #EAECEE;
+
+  /*background: #EEEBE2;*/
+  
+        
 }
 
 .navbar {

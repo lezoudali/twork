@@ -1,5 +1,5 @@
 <nav div="nav" class="nav navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".top-menu">
       <span class="sr-only">Toggle navigation</span>
@@ -14,11 +14,11 @@
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><p class="navbar-text">
-            <%= link_to current_user.name, current_user %></a>
+            <%= link_to current_user.name, current_user %>
           </p></li>
 
           <li><p class="navbar-text">
-            <%= link_to "Inbox", mailbox_inbox_path %></a>
+            <%= link_to "Inbox", mailbox_inbox_path %>
             <span class="label label-success"><%=unread_messages_count%></span>
           </p></li>
 
@@ -57,13 +57,13 @@
           </li>
 
           <li><p class="navbar-text navbar-right btn btn-default login">
-            <%= link_to "Jobs", jobs_path %></a>
+            <%= link_to "Jobs", jobs_path %>
           </p></li>
           <li><p class="navbar-text navbar-right btn btn-default login">
-            <%= link_to "Create Job", new_job_path %></a>
+            <%= link_to "Create Job", new_job_path %>
           </p></li>
           <li><p class="navbar-text navbar-right btn btn-default login">
-            <%= link_to "Log Out", logout_path %></a>
+            <%= link_to "Log Out", logout_path %>
           </p></li>
         <% else %>
           <li><p class="navbar-text navbar-right btn btn-default login">
