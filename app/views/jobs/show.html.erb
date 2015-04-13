@@ -3,9 +3,9 @@
 <h3><%= link_to @job.contractor.name, @job.contractor %></h3>
 <p>Description: <%= @job.description %></p>
 <p>Skills:</p>
-<% @job.skills.each do |s| %>
-  <%= s.name %>
-<% end %>
+<% @job.skills.each do |skill| %>
+  <p class= "label label-success" ><%= skill.name %></p>
+<% end %><br>
 
 <% unless @job.contractor == current_user %>
   <%= form_for([@job, @job.requests.build]) do |f| %>
