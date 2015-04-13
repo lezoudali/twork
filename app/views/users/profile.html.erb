@@ -17,7 +17,7 @@
             <% if @user.unread_offers.present? %>
               <% @user.unread_offers.each do |offer| %>
                 <%= div_for(offer.job, class: "row #{cycle("odd", "even")}") do %>
-                  <h3><strong><%= link_to offer.job.title, offer.job %></strong></h3>
+                  <h3><strong><%= link_to offer.job.title, offer.job, class: 'main-color' %></strong></h3>
                   <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
                   <h4 class="main-color">Contractor: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
                   <div class="accept_decline">
@@ -44,7 +44,7 @@
               <% @user.accepted_offers.each do |offer| %>
 
                 <%= div_for(offer.job, class: "row #{cycle("odd", "even")}") do %>
-                  <h3><strong><%= link_to offer.job.title, offer.job %></strong></h3>
+                  <h3><strong><%= link_to offer.job.title, offer.job, class: 'main-color' %></strong></h3>
                   <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
                   <h4 class="main-color">Contractor: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
 
@@ -65,7 +65,7 @@
             <% if @user.declined_offers.present? %>
               <% @user.declined_offers.each do |offer| %>
                 <%= div_for(offer.job, class: "row #{cycle("odd", "even")}") do %>
-                  <h3><strong><%= link_to offer.job.title, offer.job %></strong></h3>
+                  <h3><strong><%= link_to offer.job.title, offer.job, class: 'main-color' %></strong></h3>
                   <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
                   <h4 class="main-color">Contractor: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
                 <% end %>
@@ -79,7 +79,7 @@
             <% if @user.completed_offers.present? %>
               <% @user.completed_offers.each do |offer| %>
                 <%= div_for(offer.job, class: "row #{cycle("odd", "even")}") do %>
-                  <h3><strong><%= link_to offer.job.title, offer.job %></strong></h3>
+                  <h3><strong><%= link_to offer.job.title, offer.job, class: 'main-color' %></strong></h3>
                   <h4 class="main-color">Description: </h4> <p><%= offer.job.description %></p><br>
                   <h4 class="main-color">Contractor: </h4><p><%= link_to offer.client.name, offer.client  %></p><br><br>
                 <% end %>
@@ -89,13 +89,13 @@
             <% end %>
           </div>
 
-
+          <hr>
 
           <% if @user.requests.present? %>
               <h1 class="row main-color">Your requests</h1><br>
               <% @user.requests.each do |request| %>
                 <%= div_for(request.job, class: "row #{cycle("odd", "even")}") do %>
-                  <h3 ><strong><%= link_to request.job.title, request.job %></strong></h3>
+                  <h3 ><strong><%= link_to request.job.title, request.job, class: 'main-color' %></strong></h3>
                   <h4 class="main-color">Description: </h4> <p><%= request.job.description %></p><br>
                   <h4 class="main-color">Posted by: </h4><p><%= link_to request.job.contractor.name, request.job.contractor %></p><br><br>
                 <% end %>

@@ -37,7 +37,7 @@
       <h1 class="row main-color">Jobs</h1>
       <% @user.jobs.each do |job| %>
         <%= div_for(job, class: "  row #{cycle("odd", "even")}") do %>
-          <h3><strong><%= link_to job.title, job %></strong></h3>
+          <h3><strong><%= link_to job.title, job, class: 'main-color' %></strong></h3>
           <h4 class="main-color">Description: </h4> <p><%= job.description %></p><br><br>
           <% unless confirmed_logged_in? %>
             <%= form_for([job, job.requests.build]) do |f| %>

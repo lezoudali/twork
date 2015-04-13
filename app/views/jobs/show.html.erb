@@ -1,7 +1,7 @@
-<h4><%= link_to "<< Back to Job Listings" ,"/jobs" %></h4><br><br>
-<h1><strong><%= link_to @job.title, @job %></strong></h1>
-<h3><%= link_to @job.contractor.name, @job.contractor %></h3>
-<p>Description: <%= @job.description %></p>
+<h4><%= link_to "<< Back to Job Listings" ,"/jobs", class: 'main-color' %></h4><br><br>
+<h1><strong><%= link_to @job.title, @job, class: 'main-color' %></strong></h1><br>
+<p class: 'main-color'>Client: <%= link_to @job.contractor.name, @job.contractor %></p>
+<p class: 'main-color'>Description: <%= @job.description %></p>
 <% @job.skills.each do |skill| %>
   <p class= "label label-success" ><%= skill.name %></p>
 <% end %><br><br>
