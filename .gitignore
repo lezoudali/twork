@@ -19,5 +19,3 @@
 # Ignore application configuration
 /config/application.yml
 
-/app/assets/images/profile/*
-public/uploads/user/image/*
