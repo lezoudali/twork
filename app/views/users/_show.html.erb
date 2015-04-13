@@ -66,7 +66,9 @@
     <div class="profile-right">
       <h3 class="main-color">Skills </h3>
       <% @user.skills.each do |skill| %>
-        <%= link_to skill.name, skill_path(skill), class: "label label-success" %>
+        <p class="label label-success">
+          <%= skill.name %>
+        </p>
       <% end %>
     </div> 
   </div>

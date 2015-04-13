@@ -3,7 +3,7 @@ module Skillable
     skill_names.each do |skill_name|
       skills = Skill.where("lower(name) = ?", skill_name.downcase)
       skill = skills.empty? ? Skill.create(name: skill_name.downcase) : skills.first
-      self.skills << skill 
+      self.skills << skill unless self.skills.include? skill
     end
   end
 end

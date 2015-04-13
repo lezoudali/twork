@@ -35,11 +35,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    skill_names = params[:skill].split(/,\s?/)
-    @user.update_attributes(user_params)
-    skill_names.each do |name|
-      @user.skills.create(name: name)
-    end
+    get_new_skills
+    @user.update(user_params)
+    @user.save
     redirect_to user_path(@user)
   end
 
