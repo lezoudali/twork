@@ -14,11 +14,11 @@
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><p class="navbar-text">
-            <%= link_to current_user.name, current_user %>
+            <%= link_to current_user.name, current_user, class: 'main-color' %>
           </p></li>
 
           <li><p class="navbar-text">
-            <%= link_to "Inbox", mailbox_inbox_path %>
+            <%= link_to "Inbox", mailbox_inbox_path, class: 'main-color' %>
             <span class="label label-success"><%=unread_messages_count%></span>
           </p></li>
 
