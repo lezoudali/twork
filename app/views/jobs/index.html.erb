@@ -6,7 +6,7 @@
 </div>
 
 <% @jobs.each do |job| %>
-  <%= div_for(job, class: "row #{cycle("odd", "even")}") do %>
+  <%= div_for(job, class: "row odd") do %>
 
     <h3><strong><%= link_to job.title, job, class: 'main-color' %></strong></h3>
 
